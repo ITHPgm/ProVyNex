@@ -1,0 +1,828 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profynex — Pricing Plans</title>
+  <meta name="description" content="Profynex pricing plans for professionals, recruiters, and enterprises." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%231d4ed8'/%3E%3Cstop offset='1' stop-color='%230b2a6f'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Cpath d='M16 50V14h18c8 0 14 5 14 13 0 6-3 10-8 12l10 11H39L31 40h-7v10H16zm8-18h9c4 0 7-2 7-5 0-4-3-6-7-6h-9v11z' fill='white'/%3E%3C/svg%3E" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              200: '#bfdbfe',
+              300: '#93c5fd',
+              400: '#60a5fa',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#0f172a'
+            }
+          },
+          boxShadow: {
+            soft: '0 18px 50px rgba(15, 23, 42, 0.08)',
+            glow: '0 20px 60px rgba(37, 99, 235, 0.18)',
+            card: '0 18px 45px rgba(15, 23, 42, 0.06)',
+          },
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --bg: #f7f9ff;
+      --panel: rgba(255,255,255,.84);
+      --border: rgba(226,232,240,.95);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background:
+        radial-gradient(circle at 15% 12%, rgba(59,130,246,.10), transparent 24%),
+        radial-gradient(circle at 84% 15%, rgba(139,92,246,.09), transparent 18%),
+        radial-gradient(circle at 50% 60%, rgba(99,102,241,.05), transparent 22%),
+        var(--bg);
+    }
+
+    .glass {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .hero-glow {
+      background-image:
+        radial-gradient(circle at 14% 28%, rgba(37,99,235,.12), transparent 18%),
+        radial-gradient(circle at 86% 16%, rgba(168,85,247,.10), transparent 13%),
+        radial-gradient(circle at 76% 40%, rgba(16,185,129,.09), transparent 10%),
+        radial-gradient(circle at 22% 10%, rgba(255,255,255,.65), transparent 18%);
+    }
+
+    .soft-ring { box-shadow: 0 10px 30px rgba(15,23,42,.05); }
+
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    .plan-card {
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .plan-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 22px 55px rgba(15,23,42,.10);
+    }
+
+    .toggle-pill {
+      position: relative;
+      width: 56px;
+      height: 30px;
+      border-radius: 9999px;
+      background: #dbeafe;
+      cursor: pointer;
+      transition: all .2s ease;
+    }
+    .toggle-knob {
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      width: 22px;
+      height: 22px;
+      border-radius: 9999px;
+      background: white;
+      box-shadow: 0 4px 14px rgba(15,23,42,.18);
+      transition: transform .25s ease;
+    }
+    .toggle-pill[data-state="yearly"] .toggle-knob {
+      transform: translateX(26px);
+    }
+
+    .faq-item[open] .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    @media (max-width: 1023px) {
+      .desktop-nav { display: none !important; }
+    }
+  </style>
+</head>
+
+<body class="font-sans text-slate-900">
+  <!-- Header -->
+  <header class="sticky top-0 z-50 border-b border-white/70 bg-white/80 backdrop-blur-xl">
+    <div class="mx-auto flex max-w-[1440px] items-center justify-between gap-3 px-4 py-4 sm:px-6 lg:px-8">
+      <a href="#" class="flex items-center gap-3 min-w-0">
+        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-brand-700 to-brand-900 shadow-soft flex-none">
+          <span class="text-xl font-black tracking-tight text-white">PX</span>
+        </div>
+        <span class="truncate text-2xl font-semibold tracking-tight text-slate-900">Profynex</span>
+      </a>
+
+      <nav class="desktop-nav hidden items-center gap-8 xl:flex">
+        <a href="#" class="text-sm font-medium text-slate-700 hover:text-brand-700">Find Talent <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i></a>
+        <a href="#" class="text-sm font-medium text-slate-700 hover:text-brand-700">Categories <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i></a>
+        <a href="#" class="text-sm font-medium text-slate-700 hover:text-brand-700">How It Works</a>
+        <a href="#" class="text-sm font-medium text-slate-700 hover:text-brand-700">For Employers</a>
+        <a href="#" class="text-sm font-medium text-brand-700">Pricing</a>
+        <a href="#" class="text-sm font-medium text-slate-700 hover:text-brand-700">Resources <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i></a>
+      </nav>
+
+      <div class="flex items-center gap-2 sm:gap-3">
+        <button class="hidden h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white shadow-sm sm:inline-flex" aria-label="Theme">
+          <i class="fa-regular fa-moon text-slate-700"></i>
+        </button>
+        <button class="hidden h-10 rounded-full border border-slate-200 bg-white px-5 text-sm font-medium text-slate-800 shadow-sm sm:inline-flex">Login</button>
+        <button class="h-10 rounded-full bg-gradient-to-r from-brand-700 to-brand-600 px-5 text-sm font-semibold text-white shadow-glow">Sign Up</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-[1440px] px-4 pb-16 pt-8 sm:px-6 lg:px-8 lg:pt-10">
+    <!-- Hero -->
+    <section class="relative overflow-hidden rounded-[32px] border border-white/80 bg-white/55 px-4 py-10 shadow-card sm:px-8 lg:px-10">
+      <div class="pointer-events-none absolute inset-0 hero-glow"></div>
+
+      <div class="relative mx-auto max-w-4xl text-center">
+        <div class="inline-flex items-center gap-2 rounded-full border border-brand-100 bg-brand-50 px-4 py-1.5 text-sm font-medium text-brand-700 shadow-sm">
+          <i class="fa-solid fa-bolt text-[12px]"></i>
+          Simple. Transparent. Flexible.
+        </div>
+
+        <h1 class="mt-5 text-4xl font-extrabold tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">
+          Pricing That Grows <span class="bg-gradient-to-r from-brand-700 to-indigo-600 bg-clip-text text-transparent">With You</span>
+        </h1>
+
+        <p class="mx-auto mt-4 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
+          Choose the perfect plan whether you're a professional, company, recruiter, or enterprise.
+        </p>
+
+        <div class="mt-6 flex items-center justify-center gap-3">
+          <span class="text-sm font-semibold text-slate-700">Monthly</span>
+          <button id="billingToggle" class="toggle-pill shadow-sm" data-state="monthly" aria-label="Toggle billing period">
+            <span class="toggle-knob"></span>
+          </button>
+          <span class="text-sm font-semibold text-slate-700">Yearly</span>
+          <span class="rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700">Save 20%</span>
+        </div>
+      </div>
+
+      <!-- Floating stickers -->
+      <div class="pointer-events-none absolute left-6 top-10 hidden rounded-[22px] bg-brand-600/90 p-4 text-white shadow-xl shadow-brand-500/20 md:block">
+        <i class="fa-solid fa-crown text-2xl"></i>
+      </div>
+      <div class="pointer-events-none absolute right-8 top-10 hidden rounded-[22px] bg-violet-500/90 p-4 text-white shadow-xl shadow-violet-500/20 md:block">
+        <i class="fa-solid fa-bolt text-2xl"></i>
+      </div>
+      <div class="pointer-events-none absolute right-16 top-40 hidden rounded-[22px] bg-emerald-500/90 p-4 text-white shadow-xl shadow-emerald-500/20 md:block">
+        <i class="fa-solid fa-award text-2xl"></i>
+      </div>
+      <div class="pointer-events-none absolute left-16 top-36 hidden rounded-full bg-white/70 p-10 blur-[2px] md:block"></div>
+      <div class="pointer-events-none absolute right-0 top-44 hidden rounded-full bg-white/70 p-12 blur-[2px] md:block"></div>
+    </section>
+
+    <!-- Pricing cards -->
+    <section class="mt-8">
+      <div class="grid gap-4 lg:grid-cols-4">
+        <!-- Starter -->
+        <article class="plan-card glass rounded-[28px] px-6 py-7 shadow-card">
+          <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-brand-50 text-brand-700">
+            <i class="fa-regular fa-user text-2xl"></i>
+          </div>
+          <div class="mt-4 text-center">
+            <h3 class="text-2xl font-bold tracking-tight text-slate-950">Starter</h3>
+            <p class="mt-1 text-sm text-slate-500">For individuals getting started</p>
+            <div class="mt-5">
+              <div class="text-4xl font-extrabold tracking-tight text-slate-950">
+                Free
+              </div>
+              <div class="mt-1 text-sm font-medium text-slate-500">Forever</div>
+            </div>
+          </div>
+
+          <ul class="mt-6 space-y-3 text-sm text-slate-700">
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check mt-0.5 text-brand-500"></i><span>Profile Creation</span></li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check mt-0.5 text-brand-500"></i><span>Browse Jobs</span></li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check mt-0.5 text-brand-500"></i><span>Apply to Projects</span></li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check mt-0.5 text-brand-500"></i><span>Basic Verification</span></li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-xmark mt-0.5 text-slate-300"></i><span class="text-slate-500">Community Support</span></li>
+          </ul>
+
+          <button class="mt-8 w-full rounded-2xl border border-brand-200 bg-white px-5 py-3.5 text-sm font-semibold text-brand-700 shadow-sm transition hover:bg-brand-50">
+            Get Started
+          </button>
+        </article>
+
+        <!-- Professional -->
+        <article class="plan-card glass rounded-[28px] px-6 py-7 shadow-card">
+          <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+            <i class="fa-solid fa-briefcase text-2xl"></i>
+          </div>
+          <div class="mt-4 text-center">
+            <h3 class="text-2xl font-bold tracking-tight text-slate-950">Professional</h3>
+            <p class="mt-1 text-sm text-slate-500">For growing professionals</p>
+            <div class="mt-5">
+              <div class="text-4xl font-extrabold tracking-tight text-slate-950">
+                <span id="proPrice">19</span><span class="text-base font-semibold text-slate-500"> /month</span>
+              </div>
+              <div class="mt-1 text-sm font-medium text-slate-500">Billed monthly</div>
+            </div>
+          </div>
+
+          <ul class="mt-6 space-y-3 text-sm text-slate-700">
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check mt-0.5 text-emerald-500"></i><span>Everything in Starter</span></li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check mt-0.5 text-emerald-500"></i><span>Verified Badge</span></li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check mt-0.5 text-emerald-500"></i><span>Portfolio Showcase</span></li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check mt-0.5 text-emerald-500"></i><span>Unlimited Applications</span></li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check mt-0.5 text-emerald-500"></i><span>AI Profile Optimization</span></li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check mt-0.5 text-emerald-500"></i><span>Priority Listing</span></li>
+          </ul>
+
+          <button class="mt-8 w-full rounded-2xl border border-emerald-200 bg-white px-5 py-3.5 text-sm font-semibold text-emerald-600 shadow-sm transition hover:bg-emerald-50">
+            Upgrade Now
+          </button>
+        </article>
+
+        <!-- Premium -->
+        <article class="plan-card relative overflow-hidden rounded-[28px] bg-gradient-to-b from-brand-700 to-brand-600 px-6 py-7 text-white shadow-[0_30px_80px_rgba(37,99,235,.28)] lg:-translate-y-2">
+          <div class="absolute right-4 top-4 rounded-full bg-amber-300 px-3 py-1 text-xs font-bold text-slate-900 shadow">
+            <i class="fa-solid fa-star mr-1"></i> Most Popular
+          </div>
+
+          <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-white/12 text-white">
+            <i class="fa-solid fa-crown text-3xl"></i>
+          </div>
+          <div class="mt-4 text-center">
+            <h3 class="text-2xl font-bold tracking-tight">Premium</h3>
+            <p class="mt-1 text-sm text-white/80">For serious professionals</p>
+            <div class="mt-5">
+              <div class="text-4xl font-extrabold tracking-tight">
+                $49<span class="text-base font-semibold text-white/80"> /month</span>
+              </div>
+              <div class="mt-1 text-sm font-medium text-white/80">Billed monthly</div>
+            </div>
+          </div>
+
+          <ul class="mt-6 space-y-3 text-sm text-white">
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check mt-0.5 text-white"></i><span>Everything in Professional</span></li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check mt-0.5 text-white"></i><span>Featured Homepage</span></li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check mt-0.5 text-white"></i><span>Unlimited Video Calls</span></li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check mt-0.5 text-white"></i><span>AI Resume Generator</span></li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check mt-0.5 text-white"></i><span>Direct Employer Chat</span></li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check mt-0.5 text-white"></i><span>Profile Analytics</span></li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check mt-0.5 text-white"></i><span>Premium Badge</span></li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check mt-0.5 text-white"></i><span>Faster Approval</span></li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check mt-0.5 text-white"></i><span>Job Alerts</span></li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check mt-0.5 text-white"></i><span>Priority Support</span></li>
+          </ul>
+
+          <button class="mt-8 w-full rounded-2xl border border-white/20 bg-white px-5 py-3.5 text-sm font-semibold text-brand-700 shadow-sm transition hover:bg-slate-50">
+            Start Premium
+          </button>
+        </article>
+
+        <!-- Enterprise -->
+        <article class="plan-card glass rounded-[28px] px-6 py-7 shadow-card">
+          <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-violet-50 text-violet-600">
+            <i class="fa-solid fa-building text-2xl"></i>
+          </div>
+          <div class="mt-4 text-center">
+            <h3 class="text-2xl font-bold tracking-tight text-slate-950">Enterprise</h3>
+            <p class="mt-1 text-sm text-slate-500">For companies & teams</p>
+            <div class="mt-5">
+              <div class="text-4xl font-extrabold tracking-tight text-slate-950">
+                Custom
+              </div>
+              <div class="mt-1 text-sm font-medium text-slate-500">Tailored for your needs</div>
+            </div>
+          </div>
+
+          <ul class="mt-6 space-y-3 text-sm text-slate-700">
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check mt-0.5 text-violet-500"></i><span>Everything in Premium</span></li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check mt-0.5 text-violet-500"></i><span>Unlimited Recruiters</span></li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check mt-0.5 text-violet-500"></i><span>Company Dashboard</span></li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check mt-0.5 text-violet-500"></i><span>Hiring Analytics</span></li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check mt-0.5 text-violet-500"></i><span>Dedicated Manager</span></li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check mt-0.5 text-violet-500"></i><span>API Access</span></li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check mt-0.5 text-violet-500"></i><span>Custom Branding</span></li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check mt-0.5 text-violet-500"></i><span>Priority Verification</span></li>
+          </ul>
+
+          <button class="mt-8 w-full rounded-2xl border border-violet-200 bg-white px-5 py-3.5 text-sm font-semibold text-violet-600 shadow-sm transition hover:bg-violet-50">
+            Contact Sales
+          </button>
+        </article>
+      </div>
+    </section>
+
+    <!-- Comparison table -->
+    <section class="mt-10">
+      <div class="glass overflow-hidden rounded-[28px] shadow-card">
+        <div class="hidden md:block">
+          <div class="grid grid-cols-[1.4fr_repeat(4,1fr)] border-b border-slate-200/70 bg-white/70 px-5 py-4 text-sm font-semibold text-slate-900">
+            <div>Features</div>
+            <div class="text-center">Starter<br><span class="text-xs font-medium text-slate-500">Free</span></div>
+            <div class="text-center">Professional<br><span class="text-xs font-medium text-slate-500">$19/month</span></div>
+            <div class="text-center relative rounded-2xl border border-brand-200 bg-brand-50/50 py-2">
+              <span class="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-brand-700 px-3 py-1 text-[11px] font-bold text-white shadow">
+                MOST POPULAR
+              </span>
+              Premium<br><span class="text-xs font-medium text-brand-600">$49/month</span>
+            </div>
+            <div class="text-center">Enterprise<br><span class="text-xs font-medium text-slate-500">Custom</span></div>
+          </div>
+
+          <div id="comparisonRows" class="divide-y divide-slate-200/60 bg-white/50"></div>
+        </div>
+
+        <div class="md:hidden p-4">
+          <div class="mb-4 text-center text-lg font-semibold text-slate-900">Plan Comparison</div>
+          <div class="grid gap-4">
+            <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+              <div class="text-sm font-semibold text-slate-900">Starter</div>
+              <div class="mt-1 text-xs text-slate-500">Free</div>
+              <div class="mt-3 space-y-2 text-sm text-slate-700">
+                <div><i class="fa-solid fa-circle-check mr-2 text-brand-500"></i>Profile Creation</div>
+                <div><i class="fa-solid fa-circle-check mr-2 text-brand-500"></i>Browse Jobs</div>
+                <div><i class="fa-solid fa-circle-check mr-2 text-brand-500"></i>Apply to Projects</div>
+                <div><i class="fa-solid fa-circle-check mr-2 text-brand-500"></i>Basic Verification</div>
+                <div><i class="fa-solid fa-circle-xmark mr-2 text-slate-300"></i>Community Support</div>
+              </div>
+            </div>
+
+            <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+              <div class="text-sm font-semibold text-slate-900">Professional</div>
+              <div class="mt-1 text-xs text-slate-500">$19/month</div>
+              <div class="mt-3 space-y-2 text-sm text-slate-700">
+                <div><i class="fa-solid fa-circle-check mr-2 text-emerald-500"></i>Everything in Starter</div>
+                <div><i class="fa-solid fa-circle-check mr-2 text-emerald-500"></i>Verified Badge</div>
+                <div><i class="fa-solid fa-circle-check mr-2 text-emerald-500"></i>Portfolio Showcase</div>
+                <div><i class="fa-solid fa-circle-check mr-2 text-emerald-500"></i>Unlimited Applications</div>
+                <div><i class="fa-solid fa-circle-check mr-2 text-emerald-500"></i>AI Profile Optimization</div>
+                <div><i class="fa-solid fa-circle-check mr-2 text-emerald-500"></i>Priority Listing</div>
+              </div>
+            </div>
+
+            <div class="rounded-2xl border border-brand-200 bg-brand-50 p-4 shadow-sm">
+              <div class="text-sm font-semibold text-brand-700">Premium</div>
+              <div class="mt-1 text-xs text-brand-600">$49/month</div>
+              <div class="mt-3 space-y-2 text-sm text-slate-800">
+                <div><i class="fa-solid fa-circle-check mr-2 text-brand-700"></i>Everything in Professional</div>
+                <div><i class="fa-solid fa-circle-check mr-2 text-brand-700"></i>Featured Homepage</div>
+                <div><i class="fa-solid fa-circle-check mr-2 text-brand-700"></i>Unlimited Video Calls</div>
+                <div><i class="fa-solid fa-circle-check mr-2 text-brand-700"></i>AI Resume Generator</div>
+                <div><i class="fa-solid fa-circle-check mr-2 text-brand-700"></i>Direct Employer Chat</div>
+                <div><i class="fa-solid fa-circle-check mr-2 text-brand-700"></i>Profile Analytics</div>
+                <div><i class="fa-solid fa-circle-check mr-2 text-brand-700"></i>Premium Badge</div>
+                <div><i class="fa-solid fa-circle-check mr-2 text-brand-700"></i>Faster Approval</div>
+                <div><i class="fa-solid fa-circle-check mr-2 text-brand-700"></i>Job Alerts</div>
+                <div><i class="fa-solid fa-circle-check mr-2 text-brand-700"></i>Priority Support</div>
+              </div>
+            </div>
+
+            <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+              <div class="text-sm font-semibold text-slate-900">Enterprise</div>
+              <div class="mt-1 text-xs text-slate-500">Custom</div>
+              <div class="mt-3 space-y-2 text-sm text-slate-700">
+                <div><i class="fa-solid fa-circle-check mr-2 text-violet-500"></i>Everything in Premium</div>
+                <div><i class="fa-solid fa-circle-check mr-2 text-violet-500"></i>Unlimited Recruiters</div>
+                <div><i class="fa-solid fa-circle-check mr-2 text-violet-500"></i>Company Dashboard</div>
+                <div><i class="fa-solid fa-circle-check mr-2 text-violet-500"></i>Hiring Analytics</div>
+                <div><i class="fa-solid fa-circle-check mr-2 text-violet-500"></i>Dedicated Manager</div>
+                <div><i class="fa-solid fa-circle-check mr-2 text-violet-500"></i>API Access</div>
+                <div><i class="fa-solid fa-circle-check mr-2 text-violet-500"></i>Custom Branding</div>
+                <div><i class="fa-solid fa-circle-check mr-2 text-violet-500"></i>Priority Verification</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why upgrade -->
+    <section class="mt-12">
+      <h2 class="text-center text-2xl font-bold tracking-tight text-slate-950">Why Upgrade?</h2>
+      <div class="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        <div class="glass rounded-[24px] p-5 shadow-card">
+          <div class="flex items-start gap-4">
+            <div class="flex h-12 w-12 items-center justify-center rounded-full bg-brand-50 text-brand-700">
+              <i class="fa-solid fa-bolt text-xl"></i>
+            </div>
+            <div>
+              <div class="font-semibold text-slate-900">Faster Hiring</div>
+              <p class="mt-1 text-sm leading-6 text-slate-500">Get discovered by top employers and get hired faster.</p>
+            </div>
+          </div>
+        </div>
+        <div class="glass rounded-[24px] p-5 shadow-card">
+          <div class="flex items-start gap-4">
+            <div class="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+              <i class="fa-regular fa-eye text-xl"></i>
+            </div>
+            <div>
+              <div class="font-semibold text-slate-900">Better Visibility</div>
+              <p class="mt-1 text-sm leading-6 text-slate-500">Boost your profile visibility and stand out from others.</p>
+            </div>
+          </div>
+        </div>
+        <div class="glass rounded-[24px] p-5 shadow-card">
+          <div class="flex items-start gap-4">
+            <div class="flex h-12 w-12 items-center justify-center rounded-full bg-violet-50 text-violet-600">
+              <i class="fa-solid fa-shield-halved text-xl"></i>
+            </div>
+            <div>
+              <div class="font-semibold text-slate-900">Verified Identity</div>
+              <p class="mt-1 text-sm leading-6 text-slate-500">Build trust with verified badge and professional credibility.</p>
+            </div>
+          </div>
+        </div>
+        <div class="glass rounded-[24px] p-5 shadow-card">
+          <div class="flex items-start gap-4">
+            <div class="flex h-12 w-12 items-center justify-center rounded-full bg-orange-50 text-orange-500">
+              <i class="fa-solid fa-chart-line text-xl"></i>
+            </div>
+            <div>
+              <div class="font-semibold text-slate-900">More Opportunities</div>
+              <p class="mt-1 text-sm leading-6 text-slate-500">Access exclusive job offers and premium opportunities.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="mt-6">
+      <div class="rounded-[28px] bg-gradient-to-r from-[#10213f] via-[#122752] to-[#0e1b48] px-5 py-6 text-white shadow-2xl shadow-brand-500/20 sm:px-8">
+        <div class="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+          <div class="flex items-center gap-4 border-white/10 xl:border-r xl:pr-6">
+            <div class="flex h-14 w-14 items-center justify-center rounded-full bg-brand-700/25 text-brand-300">
+              <i class="fa-solid fa-users text-2xl"></i>
+            </div>
+            <div>
+              <div class="text-3xl font-extrabold tracking-tight">25K+</div>
+              <div class="text-sm text-white/80">Verified Professionals</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-4 border-white/10 xl:border-r xl:px-6">
+            <div class="flex h-14 w-14 items-center justify-center rounded-full bg-emerald-500/15 text-emerald-400">
+              <i class="fa-solid fa-shield-heart text-2xl"></i>
+            </div>
+            <div>
+              <div class="text-3xl font-extrabold tracking-tight">98%</div>
+              <div class="text-sm text-white/80">Approval Rate</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-4 border-white/10 xl:border-r xl:px-6">
+            <div class="flex h-14 w-14 items-center justify-center rounded-full bg-violet-500/15 text-violet-300">
+              <i class="fa-solid fa-earth-africa text-2xl"></i>
+            </div>
+            <div>
+              <div class="text-3xl font-extrabold tracking-tight">120+</div>
+              <div class="text-sm text-white/80">Countries</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-4 xl:pl-6">
+            <div class="flex h-14 w-14 items-center justify-center rounded-full bg-orange-500/15 text-orange-300">
+              <i class="fa-solid fa-briefcase text-2xl"></i>
+            </div>
+            <div>
+              <div class="text-3xl font-extrabold tracking-tight">50K+</div>
+              <div class="text-sm text-white/80">Projects Completed</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials + FAQ -->
+    <section class="mt-12 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+      <div>
+        <h2 class="text-center text-2xl font-bold tracking-tight text-slate-950 lg:text-left">What Our Users Say</h2>
+        <div class="mt-6 grid gap-4 md:grid-cols-3">
+          <article class="glass rounded-[24px] p-5 shadow-card">
+            <div class="flex items-center justify-between">
+              <i class="fa-solid fa-quote-left text-slate-300"></i>
+              <div class="flex gap-1 text-amber-400">
+                <i class="fa-solid fa-star text-[12px]"></i>
+                <i class="fa-solid fa-star text-[12px]"></i>
+                <i class="fa-solid fa-star text-[12px]"></i>
+                <i class="fa-solid fa-star text-[12px]"></i>
+                <i class="fa-solid fa-star text-[12px]"></i>
+              </div>
+            </div>
+            <p class="mt-4 text-sm leading-7 text-slate-600">“Profynex Premium increased my profile visibility by 300%. I get amazing clients and projects every month.”</p>
+            <div class="mt-5 flex items-center gap-3">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80" class="h-11 w-11 rounded-full object-cover" alt="Samuel" />
+              <div>
+                <div class="text-sm font-semibold text-slate-900">Samuel A.</div>
+                <div class="text-xs text-slate-500">Full Stack Developer</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="glass rounded-[24px] p-5 shadow-card">
+            <div class="flex items-center justify-between">
+              <i class="fa-solid fa-quote-left text-slate-300"></i>
+              <div class="flex gap-1 text-amber-400">
+                <i class="fa-solid fa-star text-[12px]"></i>
+                <i class="fa-solid fa-star text-[12px]"></i>
+                <i class="fa-solid fa-star text-[12px]"></i>
+                <i class="fa-solid fa-star text-[12px]"></i>
+                <i class="fa-solid fa-star text-[12px]"></i>
+              </div>
+            </div>
+            <p class="mt-4 text-sm leading-7 text-slate-600">“Got hired within two weeks of upgrading my plan. The video call feature is a game changer!”</p>
+            <div class="mt-5 flex items-center gap-3">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80" class="h-11 w-11 rounded-full object-cover" alt="Jessica" />
+              <div>
+                <div class="text-sm font-semibold text-slate-900">Jessica Chen</div>
+                <div class="text-xs text-slate-500">UI/UX Designer</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="glass rounded-[24px] p-5 shadow-card">
+            <div class="flex items-center justify-between">
+              <i class="fa-solid fa-quote-left text-slate-300"></i>
+              <div class="flex gap-1 text-amber-400">
+                <i class="fa-solid fa-star text-[12px]"></i>
+                <i class="fa-solid fa-star text-[12px]"></i>
+                <i class="fa-solid fa-star text-[12px]"></i>
+                <i class="fa-solid fa-star text-[12px]"></i>
+                <i class="fa-solid fa-star text-[12px]"></i>
+              </div>
+            </div>
+            <p class="mt-4 text-sm leading-7 text-slate-600">“The best platform to find verified talent. The analytics and insights help us hire the right people.”</p>
+            <div class="mt-5 flex items-center gap-3">
+              <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80" class="h-11 w-11 rounded-full object-cover" alt="David" />
+              <div>
+                <div class="text-sm font-semibold text-slate-900">David Morgan</div>
+                <div class="text-xs text-slate-500">CTO, TechNova</div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-center text-2xl font-bold tracking-tight text-slate-950 lg:text-left">Frequently Asked Questions</h2>
+        <div class="mt-6 space-y-3">
+          <details class="faq-item glass rounded-2xl p-4 shadow-card group">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-semibold text-slate-900">
+              How do payments work?
+              <i class="faq-icon fa-solid fa-plus text-brand-700 transition-transform duration-200"></i>
+            </summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Payments are processed securely using major cards and supported payment providers. You can upgrade, downgrade, or cancel depending on your plan terms.</p>
+          </details>
+
+          <details class="faq-item glass rounded-2xl p-4 shadow-card group">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-semibold text-slate-900">
+              Can I cancel anytime?
+              <i class="faq-icon fa-solid fa-plus text-brand-700 transition-transform duration-200"></i>
+            </summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Yes. You can cancel your subscription at any time from your account settings. Your plan remains active until the billing period ends.</p>
+          </details>
+
+          <details class="faq-item glass rounded-2xl p-4 shadow-card group">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-semibold text-slate-900">
+              Is there a free trial?
+              <i class="faq-icon fa-solid fa-plus text-brand-700 transition-transform duration-200"></i>
+            </summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Starter is free forever. Premium and Enterprise can be trialed based on onboarding offers or sales arrangements.</p>
+          </details>
+
+          <details class="faq-item glass rounded-2xl p-4 shadow-card group">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-semibold text-slate-900">
+              Can I upgrade or downgrade anytime?
+              <i class="faq-icon fa-solid fa-plus text-brand-700 transition-transform duration-200"></i>
+            </summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Yes. Plan changes are available from your dashboard. Proration rules can be configured based on your billing policy.</p>
+          </details>
+
+          <details class="faq-item glass rounded-2xl p-4 shadow-card group">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-semibold text-slate-900">
+              Do you offer refunds?
+              <i class="faq-icon fa-solid fa-plus text-brand-700 transition-transform duration-200"></i>
+            </summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Refund policy is configurable. For premium services, you can define a support and refund window in your billing settings.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="mt-12 overflow-hidden rounded-[28px] bg-gradient-to-r from-brand-500 via-brand-600 to-indigo-600 px-6 py-8 text-white shadow-2xl shadow-brand-500/20 sm:px-8">
+      <div class="grid items-center gap-6 lg:grid-cols-[1.2fr_auto_auto]">
+        <div class="flex items-center gap-4">
+          <div class="hidden h-16 w-16 items-center justify-center rounded-full bg-white/15 lg:flex">
+            <i class="fa-solid fa-rocket text-2xl"></i>
+          </div>
+          <div>
+            <h3 class="text-2xl font-bold tracking-tight sm:text-3xl">Ready to take your career to the next level?</h3>
+            <p class="mt-1 text-sm leading-6 text-white/85">Join thousands of verified professionals and get discovered by top employers.</p>
+          </div>
+        </div>
+        <button class="rounded-full bg-white px-6 py-3 text-sm font-semibold text-brand-700 shadow-sm hover:bg-slate-50">Start Free</button>
+        <button class="rounded-full border border-white/25 bg-white/10 px-6 py-3 text-sm font-semibold text-white hover:bg-white/15">Upgrade Now</button>
+      </div>
+    </section>
+
+    <!-- Payments + trust -->
+    <section class="mt-6">
+      <div class="grid gap-3 lg:grid-cols-[1.2fr_1fr]">
+        <div class="glass rounded-[24px] px-5 py-4 shadow-card">
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <div class="text-sm font-semibold text-slate-900">Secure Payments</div>
+              <div class="text-xs text-slate-500">Powered by trusted partners</div>
+            </div>
+            <div class="flex flex-wrap items-center gap-4 text-2xl text-slate-500">
+              <i class="fa-brands fa-cc-visa"></i>
+              <i class="fa-brands fa-cc-mastercard"></i>
+              <i class="fa-brands fa-paypal"></i>
+              <i class="fa-brands fa-stripe"></i>
+              <i class="fa-brands fa-apple-pay"></i>
+              <i class="fa-brands fa-google-pay"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass rounded-[24px] px-5 py-4 shadow-card">
+          <div class="grid grid-cols-2 gap-3 sm:grid-cols-4">
+            <div class="flex items-center gap-2">
+              <div class="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+                <i class="fa-solid fa-shield-halved text-sm"></i>
+              </div>
+              <div>
+                <div class="text-xs font-semibold text-slate-900">SSL Secured</div>
+                <div class="text-[11px] text-slate-500">256-bit encryption</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="flex h-9 w-9 items-center justify-center rounded-full bg-brand-50 text-brand-700">
+                <i class="fa-solid fa-circle-check text-sm"></i>
+              </div>
+              <div>
+                <div class="text-xs font-semibold text-slate-900">100% Safe Payments</div>
+                <div class="text-[11px] text-slate-500">Powered by Stripe</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="flex h-9 w-9 items-center justify-center rounded-full bg-violet-50 text-violet-600">
+                <i class="fa-solid fa-award text-sm"></i>
+              </div>
+              <div>
+                <div class="text-xs font-semibold text-slate-900">30-Day Guarantee</div>
+                <div class="text-[11px] text-slate-500">Risk-free & reliable</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="flex h-9 w-9 items-center justify-center rounded-full bg-orange-50 text-orange-500">
+                <i class="fa-solid fa-badge-check text-sm"></i>
+              </div>
+              <div>
+                <div class="text-xs font-semibold text-slate-900">Trusted Platform</div>
+                <div class="text-[11px] text-slate-500">Verified & secure</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="mt-6 overflow-hidden rounded-[28px] bg-[#0e1b48] px-5 py-8 text-white shadow-2xl shadow-brand-500/20 sm:px-8">
+      <div class="grid gap-8 lg:grid-cols-[1.1fr_repeat(4,0.8fr)]">
+        <div>
+          <a href="#" class="flex items-center gap-3">
+            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-brand-700 to-brand-900">
+              <span class="text-xl font-black tracking-tight text-white">PX</span>
+            </div>
+            <span class="text-2xl font-semibold tracking-tight text-white">Profynex</span>
+          </a>
+          <p class="mt-4 max-w-sm text-sm leading-7 text-white/70">Connecting verified professionals with trusted opportunities around the world.</p>
+          <div class="mt-5 flex gap-3 text-white/80">
+            <a href="#" class="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 hover:bg-white/10"><i class="fa-brands fa-facebook-f text-sm"></i></a>
+            <a href="#" class="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 hover:bg-white/10"><i class="fa-brands fa-twitter text-sm"></i></a>
+            <a href="#" class="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 hover:bg-white/10"><i class="fa-brands fa-linkedin-in text-sm"></i></a>
+            <a href="#" class="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 hover:bg-white/10"><i class="fa-brands fa-instagram text-sm"></i></a>
+            <a href="#" class="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 hover:bg-white/10"><i class="fa-brands fa-youtube text-sm"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <div class="text-sm font-semibold">Company</div>
+          <ul class="mt-4 space-y-3 text-sm text-white/70">
+            <li><a href="#" class="hover:text-white">About Us</a></li>
+            <li><a href="#" class="hover:text-white">Careers</a></li>
+            <li><a href="#" class="hover:text-white">Press</a></li>
+            <li><a href="#" class="hover:text-white">Blog</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="text-sm font-semibold">For Professionals</div>
+          <ul class="mt-4 space-y-3 text-sm text-white/70">
+            <li><a href="#" class="hover:text-white">Browse Jobs</a></li>
+            <li><a href="#" class="hover:text-white">Create Profile</a></li>
+            <li><a href="#" class="hover:text-white">How It Works</a></li>
+            <li><a href="#" class="hover:text-white">Success Stories</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="text-sm font-semibold">For Employers</div>
+          <ul class="mt-4 space-y-3 text-sm text-white/70">
+            <li><a href="#" class="hover:text-white">Post a Job</a></li>
+            <li><a href="#" class="hover:text-white">Browse Talent</a></li>
+            <li><a href="#" class="hover:text-white">Pricing</a></li>
+            <li><a href="#" class="hover:text-white">Resources</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="text-sm font-semibold">Support</div>
+          <ul class="mt-4 space-y-3 text-sm text-white/70">
+            <li><a href="#" class="hover:text-white">Help Center</a></li>
+            <li><a href="#" class="hover:text-white">Contact Us</a></li>
+            <li><a href="#" class="hover:text-white">Community</a></li>
+            <li><a href="#" class="hover:text-white">Trust & Safety</a></li>
+          </ul>
+          <div class="mt-6">
+            <div class="text-sm font-semibold">Subscribe to our newsletter</div>
+            <p class="mt-2 text-sm leading-6 text-white/70">Get the latest updates, tips and opportunities delivered to your inbox.</p>
+            <div class="mt-3 flex gap-2">
+              <input type="email" placeholder="Enter your email" class="h-11 w-full rounded-xl border border-white/10 bg-white/10 px-4 text-sm text-white placeholder:text-white/40 outline-none focus:ring-2 focus:ring-white/30" />
+              <button class="h-11 rounded-xl bg-brand-600 px-4 text-sm font-semibold text-white">Subscribe</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="my-8 h-px bg-white/10"></div>
+
+      <div class="flex flex-col gap-4 text-xs text-white/55 sm:flex-row sm:items-center sm:justify-between">
+        <div>© 2024 Profynex. All rights reserved.</div>
+        <div class="flex flex-wrap gap-5">
+          <a href="#" class="hover:text-white">Terms of Service</a>
+          <a href="#" class="hover:text-white">Privacy Policy</a>
+          <a href="#" class="hover:text-white">Cookies Policy</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    const billingToggle = document.getElementById('billingToggle');
+    const proPrice = document.getElementById('proPrice');
+
+    billingToggle.addEventListener('click', () => {
+      const yearly = billingToggle.getAttribute('data-state') === 'monthly';
+      billingToggle.setAttribute('data-state', yearly ? 'yearly' : 'monthly');
+      proPrice.textContent = yearly ? '15' : '19';
+    });
+
+    const comparisons = [
+      ['Verified Badge', true, true, true, true],
+      ['Unlimited Job Applications', false, true, true, true],
+      ['AI Profile Optimization', false, true, true, true],
+      ['Video Calls', false, true, true, true],
+      ['Featured Profile', false, false, true, true],
+      ['Analytics & Insights', false, false, true, true],
+      ['Company Dashboard', false, false, false, true],
+      ['API Access', false, false, false, true],
+      ['Priority Support', false, false, true, true],
+    ];
+
+    const comparisonRows = document.getElementById('comparisonRows');
+    comparisons.forEach(([label, starter, pro, premium, enterprise]) => {
+      const row = document.createElement('div');
+      row.className = 'grid grid-cols-[1.4fr_repeat(4,1fr)] items-center px-5 py-3 text-sm';
+      row.innerHTML = `
+        <div class="text-slate-600">${label}</div>
+        ${cell(starter)}
+        ${cell(pro)}
+        ${cell(premium, true)}
+        ${cell(enterprise)}
+      `;
+      comparisonRows.appendChild(row);
+    });
+
+    function cell(value, highlight = false) {
+      const cls = highlight ? 'text-brand-700 bg-brand-50/60 rounded-xl' : '';
+      return `<div class="flex justify-center py-1 ${cls}">${value ? '<i class="fa-solid fa-circle-check text-emerald-500"></i>' : '<i class="fa-solid fa-circle-xmark text-slate-300"></i>'}</div>`;
+    }
+  </script>
+</body>
+</html>

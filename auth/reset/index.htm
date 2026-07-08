@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>Reset Password — Profynex</title>
+    <meta name="description" content="Reset your Profynex account password to regain access to your portfolio and opportunities." />
+    <meta name="theme-color" content="#1d4ed8" />
+
+    <!-- Favicon & Icons -->
+    <link rel="icon" href="https://chatgpt.com/s/m_6a4d246c534c8191afe2457aaf66cab7" />
+    <link rel="apple-touch-icon" href="https://chatgpt.com/s/m_6a4d246c534c8191afe2457aaf66cab7" />
+    <link rel="shortcut icon" href="https://chatgpt.com/s/m_6a4d246c534c8191afe2457aaf66cab7" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    boxShadow: {
+                        soft: '0 18px 50px rgba(15, 23, 42, 0.08)',
+                        glow: '0 20px 60px rgba(37, 99, 235, 0.18)',
+                        'glow-lg': '0 30px 80px rgba(37, 99, 235, 0.25)',
+                        'card': '0 25px 80px rgba(15,23,42,0.12)',
+                        'input': '0 0 0 3px rgba(37,99,235,0.15)',
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#0f172a',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* ── CSS Variables for Theme ── */
+        :root {
+            --bg: #f7f9ff;
+            --panel: rgba(255, 255, 255, 0.85);
+            --border: rgba(226, 232, 240, 0.95);
+            --text: #0f172a;
+            --text-muted: #475569;
+            --card-bg: #ffffff;
+            --card-border: rgba(226, 232, 240, 0.9);
+            --shadow-color: rgba(15, 23, 42, 0.06);
+            --border-light: rgba(226, 232, 240, 0.8);
+            --form-bg: rgba(255, 255, 255, 0.88);
+            --login-wrapper-bg: rgba(255, 255, 255, 0.75);
+        }
+
+        [data-theme="dark"] {
+            --bg: #0a0e17;
+            --panel: rgba(18, 26, 40, 0.92);
+            --border: rgba(56, 70, 90, 0.8);
+            --text: #e8edf5;
+            --text-muted: #94a3b8;
+            --card-bg: #121c2e;
+            --card-border: rgba(56, 70, 90, 0.6);
+            --shadow-color: rgba(0, 0, 0, 0.3);
+            --border-light: rgba(56, 70, 90, 0.6);
+            --form-bg: rgba(18, 26, 40, 0.92);
+            --login-wrapper-bg: rgba(18, 26, 40, 0.80);
+        }
+
+        /* ── Base ── */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background: var(--bg);
+            font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+            color: var(--text);
+            transition: background 0.4s ease, color 0.3s ease;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* ── Login Wrapper ── */
+        .login-wrapper {
+            display: flex;
+            position: relative;
+            width: 100%;
+            max-width: 940px;
+            border-radius: 2.5rem;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(15, 23, 42, 0.10), 0 0 0 1px rgba(255, 255, 255, 0.3) inset;
+            background: var(--login-wrapper-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: box-shadow 0.3s ease, transform 0.3s ease, background 0.4s ease, border-color 0.3s ease;
+            min-height: 520px;
+        }
+        .login-wrapper:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 40px 100px rgba(15, 23, 42, 0.14), 0 0 0 1px rgba(255, 255, 255, 0.4) inset;
+        }
+        [data-theme="dark"] .login-wrapper {
+            border-color: rgba(56, 70, 90, 0.5);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(56, 70, 90, 0.3) inset;
+        }
+        [data-theme="dark"] .login-wrapper:hover {
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(56, 70, 90, 0.4) inset;
+        }
+
+        /* Glow orbs */
+        .login-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -80px;
+            left: 30%;
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.12), transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .login-wrapper::after {
+            content: '';
+            position: absolute;
+            bottom: -60px;
+            right: 20%;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.10), transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        [data-theme="dark"] .login-wrapper::before {
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.08), transparent 70%);
+        }
+        [data-theme="dark"] .login-wrapper::after {
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.06), transparent 70%);
+        }
+
+        .login-wrapper>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ── Theme Toggle inside container ── */
+        .theme-toggle-container {
+            position: absolute;
+            top: 18px;
+            right: 20px;
+            z-index: 20;
+        }
+        .theme-toggle-inner {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--panel);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: var(--text);
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+        .theme-toggle-inner:hover {
+            transform: scale(1.06);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        }
+        .theme-toggle-inner:active {
+            transform: scale(0.92);
+        }
+        [data-theme="dark"] .theme-toggle-inner {
+            background: var(--panel);
+            border-color: var(--border);
+            color: var(--text);
+        }
+
+        /* ── Image Panel ── */
+        .image-panel {
+            flex: 1;
+            min-width: 0;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            position: relative;
+            overflow: hidden;
+            transform: translateX(-100%);
+            transition: transform 0.85s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 2.5rem 0 0 2.5rem;
+        }
+        [data-theme="dark"] .image-panel {
+            background: rgba(18, 26, 40, 0.4);
+            border-right-color: rgba(56, 70, 90, 0.3);
+        }
+        .image-panel.open {
+            transform: translateX(0);
+        }
+
+        .image-panel .image-inner {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.5), rgba(241, 245, 249, 0.3));
+        }
+        [data-theme="dark"] .image-panel .image-inner {
+            background: linear-gradient(145deg, rgba(18, 26, 40, 0.6), rgba(10, 14, 23, 0.4));
+        }
+
+        .image-panel .image-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.8s ease;
+        }
+        .image-panel.open .image-inner img {
+            transform: scale(1);
+        }
+
+        .image-panel .image-inner .img-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(29, 78, 216, 0.08), rgba(99, 102, 241, 0.05));
+            pointer-events: none;
+        }
+
+        .image-panel .door-handle {
+            position: absolute;
+            right: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 60px;
+            background: linear-gradient(180deg, rgba(37, 99, 235, 0.4), rgba(99, 102, 241, 0.4));
+            border-radius: 4px;
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.15);
+            z-index: 5;
+            opacity: 0;
+            transition: opacity 0.6s ease 0.4s;
+        }
+        [data-theme="dark"] .image-panel .door-handle {
+            background: linear-gradient(180deg, rgba(59, 130, 246, 0.5), rgba(99, 102, 241, 0.5));
+        }
+        .image-panel.open .door-handle {
+            opacity: 1;
+        }
+
+        .image-panel::before {
+            content: '';
+            position: absolute;
+            right: -2px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, rgba(37, 99, 235, 0.15), rgba(99, 102, 241, 0.10));
+            z-index: 3;
+            border-radius: 2px 0 0 2px;
+            opacity: 0;
+            transition: opacity 0.6s ease 0.3s;
+        }
+        .image-panel.open::before {
+            opacity: 1;
+        }
+
+        /* ── Reset Card ── */
+        .reset-card {
+            width: 100%;
+            max-width: 440px;
+            flex-shrink: 0;
+            padding: 2.25rem 2rem 2.5rem;
+            background: transparent;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+        }
+
+        /* ── Logo ── */
+        .logo-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        .logo-icon {
+            display: flex;
+            height: 48px;
+            width: 48px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #1d4ed8, #2563eb);
+            color: #fff;
+            font-weight: 900;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.25);
+            transition: transform 0.3s ease;
+            overflow: hidden;
+        }
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .logo-icon:hover {
+            transform: scale(1.05);
+        }
+        .logo-text {
+            font-size: 1.65rem;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            transition: color 0.3s ease;
+        }
+        .logo-text span {
+            background: linear-gradient(135deg, #1d4ed8, #2563eb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ── Form ── */
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+        .form-label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+            transition: color 0.3s ease;
+        }
+        .input-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 14px;
+            border: 1.5px solid var(--border-light);
+            transition: all 0.25s ease;
+            overflow: hidden;
+        }
+        [data-theme="dark"] .input-wrap {
+            background: rgba(18, 26, 40, 0.6);
+        }
+        .input-wrap:focus-within {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.10);
+            background: rgba(255, 255, 255, 0.85);
+        }
+        [data-theme="dark"] .input-wrap:focus-within {
+            background: rgba(18, 26, 40, 0.85);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+        }
+        .input-wrap .input-icon {
+            flex-shrink: 0;
+            width: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            font-size: 1rem;
+            transition: color 0.25s ease;
+        }
+        .input-wrap:focus-within .input-icon {
+            color: #2563eb;
+        }
+        .input-wrap input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            padding: 14px 16px 14px 0;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text);
+            outline: none;
+            font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+            width: 100%;
+            min-width: 0;
+        }
+        .input-wrap input::placeholder {
+            color: #94a3b8;
+            font-weight: 400;
+        }
+
+        /* ── Shake Animation ── */
+        @keyframes shake {
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+            10% {
+                transform: translateX(-10px);
+            }
+            30% {
+                transform: translateX(10px);
+            }
+            50% {
+                transform: translateX(-8px);
+            }
+            70% {
+                transform: translateX(8px);
+            }
+            90% {
+                transform: translateX(-4px);
+            }
+        }
+        .input-wrap.shake {
+            animation: shake 0.5s ease forwards;
+            border-color: #f87171;
+            box-shadow: 0 0 0 4px rgba(248, 113, 113, 0.12);
+        }
+        .input-wrap.shake .input-icon {
+            color: #f87171;
+        }
+        .input-wrap.error {
+            border-color: #f87171;
+            background: rgba(248, 113, 113, 0.04);
+        }
+        .input-wrap.error .input-icon {
+            color: #f87171;
+        }
+        .input-wrap.error:focus-within {
+            border-color: #f87171;
+            box-shadow: 0 0 0 4px rgba(248, 113, 113, 0.10);
+        }
+        [data-theme="dark"] .input-wrap.error {
+            background: rgba(248, 113, 113, 0.06);
+        }
+
+        /* ── Button ── */
+        .btn-reset {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 16px 24px;
+            border: none;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #1d4ed8, #2563eb);
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 8px 30px rgba(37, 99, 235, 0.25);
+            position: relative;
+            overflow: hidden;
+            margin-top: 4px;
+        }
+        .btn-reset:hover {
+            transform: translateY(-2px) scale(1.01);
+            box-shadow: 0 16px 48px rgba(37, 99, 235, 0.35);
+        }
+        .btn-reset:active {
+            transform: scale(0.97);
+        }
+        .btn-reset:disabled {
+            opacity: 0.7;
+            pointer-events: none;
+            transform: scale(0.98);
+        }
+        .btn-reset .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 2.5px solid rgba(255, 255, 255, 0.2);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+        }
+        .btn-reset.loading .spinner {
+            display: inline-block;
+        }
+        .btn-reset.loading .btn-text {
+            display: none;
+        }
+        .btn-reset.loading .btn-icon {
+            display: none;
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ── iOS Notification ── */
+        #notifPopupContainer {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 400px;
+            width: 100%;
+            pointer-events: none;
+        }
+        #notifPopupContainer .ios-notification {
+            pointer-events: auto;
+            animation: notifSlideIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            box-shadow: 0 16px 50px rgba(0, 0, 0, 0.18), 0 2px 10px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255,
+                    0.7);
+            cursor: default;
+            opacity: 0;
+            transform: translateX(40px) scale(0.95);
+        }
+        #notifPopupContainer .ios-notification.show {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+        }
+        #notifPopupContainer .ios-notification.hiding {
+            animation: notifSlideOut 0.4s ease forwards;
+        }
+        @keyframes notifSlideIn {
+            0% {
+                opacity: 0;
+                transform: translateX(40px) scale(0.92);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+        @keyframes notifSlideOut {
+            0% {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(40px) scale(0.92);
+            }
+        }
+        #notifPopupContainer .ios-notification .notif-close {
+            background: none;
+            border: none;
+            color: #aaa;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 0 4px;
+            transition: color 0.2s;
+            flex-shrink: 0;
+            margin-left: 4px;
+        }
+        #notifPopupContainer .ios-notification .notif-close:hover {
+            color: #555;
+        }
+
+        @media (max-width: 640px) {
+            #notifPopupContainer {
+                top: 70px;
+                right: 8px;
+                left: 8px;
+                max-width: 100%;
+                width: auto;
+            }
+            #notifPopupContainer .ios-notification {
+                min-width: unset;
+                max-width: 100%;
+                width: 100%;
+                padding: 12px 14px;
+                border-radius: 18px;
+            }
+            #notifPopupContainer .ios-notification .notif-icon {
+                width: 36px;
+                height: 36px;
+                font-size: 14px;
+                flex-shrink: 0;
+            }
+            #notifPopupContainer .ios-notification .notif-title {
+                font-size: 13px;
+            }
+            #notifPopupContainer .ios-notification .notif-body {
+                font-size: 12px;
+            }
+            #notifPopupContainer .ios-notification .notif-time {
+                font-size: 10px;
+            }
+            #notifPopupContainer .ios-notification .notif-close {
+                font-size: 14px;
+            }
+        }
+
+        .ios-notification {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(28px) saturate(1.1);
+            -webkit-backdrop-filter: blur(28px) saturate(1.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 22px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12), 0 2px 10px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255,
+                    0.7);
+            padding: 14px 18px;
+            min-width: 280px;
+            max-width: 400px;
+            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+        }
+        .ios-notification .notif-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: linear-gradient(145deg, #2563eb, #1d4ed8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 18px;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+        .ios-notification .notif-icon.emerald {
+            background: linear-gradient(145deg, #10b981, #059669);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+        .ios-notification .notif-icon.rose {
+            background: linear-gradient(145deg, #f43f5e, #e11d48);
+            box-shadow: 0 4px 12px rgba(244, 63, 94, 0.3);
+        }
+        .ios-notification .notif-icon.slate {
+            background: linear-gradient(145deg, #64748b, #475569);
+            box-shadow: 0 4px 12px rgba(100, 116, 139, 0.3);
+        }
+        .ios-notification .notif-icon.amber {
+            background: linear-gradient(145deg, #f59e0b, #d97706);
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+        }
+        .ios-notification .notif-content {
+            flex: 1;
+            min-width: 0;
+        }
+        .ios-notification .notif-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #0a0a0a;
+            line-height: 1.3;
+        }
+        .ios-notification .notif-body {
+            font-size: 13px;
+            color: #3a3a3a;
+            line-height: 1.35;
+            font-weight: 400;
+        }
+        .ios-notification .notif-time {
+            font-size: 11px;
+            color: #888;
+            font-weight: 500;
+            letter-spacing: 0.01em;
+        }
+
+        [data-theme="dark"] .ios-notification {
+            background: rgba(18, 28, 46, 0.92);
+            border-color: rgba(56, 70, 90, 0.4);
+        }
+        [data-theme="dark"] .ios-notification .notif-title {
+            color: #e8edf5;
+        }
+        [data-theme="dark"] .ios-notification .notif-body {
+            color: #94a3b8;
+        }
+        [data-theme="dark"] .ios-notification .notif-time {
+            color: #64748b;
+        }
+        [data-theme="dark"] .ios-notification .notif-close {
+            color: #94a3b8;
+        }
+        [data-theme="dark"] .ios-notification .notif-close:hover {
+            color: #e8edf5;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 480px) {
+            .reset-card {
+                padding: 1.75rem 1.25rem 2rem;
+            }
+            .logo-text {
+                font-size: 1.4rem;
+            }
+            .logo-icon {
+                height: 42px;
+                width: 42px;
+                font-size: 1.3rem;
+            }
+            .theme-toggle-container {
+                top: 12px;
+                right: 14px;
+            }
+            .theme-toggle-inner {
+                width: 34px;
+                height: 34px;
+                font-size: 14px;
+            }
+            .form-group {
+                margin-bottom: 0.9rem;
+            }
+            .input-wrap input {
+                padding: 12px 14px 12px 0;
+                font-size: 0.85rem;
+            }
+            .input-wrap .input-icon {
+                width: 38px;
+                font-size: 0.85rem;
+            }
+            .btn-reset {
+                padding: 14px 20px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .login-wrapper {
+                min-height: 520px;
+            }
+            .image-panel {
+                flex: 1;
+                min-width: 0;
+                display: block;
+            }
+            .reset-card {
+                max-width: 440px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .login-wrapper {
+                max-width: 440px;
+                min-height: auto;
+                border-radius: 2.5rem;
+                overflow: hidden;
+            }
+            .image-panel {
+                display: none !important;
+            }
+            .reset-card {
+                max-width: 100%;
+                padding: 1.75rem 1.25rem 2rem;
+            }
+            .login-wrapper::before,
+            .login-wrapper::after {
+                display: none;
+            }
+            .theme-toggle-container {
+                top: 12px;
+                right: 14px;
+            }
+        }
+
+        /* ── Background blobs ── */
+        .bg-blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+            z-index: -1;
+        }
+        .bg-blob-1 {
+            top: -10%;
+            right: -8%;
+            width: 500px;
+            height: 500px;
+            background: rgba(37, 99, 235, 0.10);
+        }
+        .bg-blob-2 {
+            bottom: -12%;
+            left: -6%;
+            width: 450px;
+            height: 450px;
+            background: rgba(99, 102, 241, 0.06);
+        }
+        [data-theme="dark"] .bg-blob-1 {
+            background: rgba(37, 99, 235, 0.06);
+        }
+        [data-theme="dark"] .bg-blob-2 {
+            background: rgba(99, 102, 241, 0.04);
+        }
+        @media (max-width: 640px) {
+            .bg-blob-1 {
+                width: 300px;
+                height: 300px;
+                top: -5%;
+            }
+            .bg-blob-2 {
+                width: 280px;
+                height: 280px;
+                bottom: -5%;
+            }
+        }
+
+        /* ── Scrollbar Dark ── */
+        [data-theme="dark"] ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        [data-theme="dark"] ::-webkit-scrollbar-track {
+            background: #0a0e17;
+        }
+        [data-theme="dark"] ::-webkit-scrollbar-thumb {
+            background: #2a3648;
+            border-radius: 4px;
+        }
+        [data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+            background: #3a4a5a;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ============================================================ -->
+    <!-- iOS NOTIFICATION CONTAINER                                    -->
+    <!-- ============================================================ -->
+    <div id="notifPopupContainer"></div>
+
+    <!-- ============================================================ -->
+    <!-- BACKGROUND BLOBS                                              -->
+    <!-- ============================================================ -->
+    <div class="bg-blob bg-blob-1"></div>
+    <div class="bg-blob bg-blob-2"></div>
+
+    <!-- ============================================================ -->
+    <!-- RESET WRAPPER                                                 -->
+    <!-- ============================================================ -->
+    <div class="login-wrapper" id="resetWrapper">
+
+        <!-- Theme Toggle — top-right inside container -->
+        <div class="theme-toggle-container">
+            <button class="theme-toggle-inner" id="themeToggle" aria-label="Toggle theme">
+                <i class="fas fa-moon" id="themeIcon"></i>
+            </button>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- IMAGE PANEL (left) — slides in like a door                   -->
+        <!-- ============================================================ -->
+        <div class="image-panel" id="imagePanel">
+            <div class="door-handle"></div>
+            <div class="image-inner">
+                <img
+                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Profynex Reset Password Illustration"
+                loading="lazy"
+                />
+                <div class="img-overlay"></div>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- RESET CARD (right)                                           -->
+        <!-- ============================================================ -->
+        <div class="reset-card">
+
+            <!-- Logo Centered -->
+            <div class="flex justify-center mb-5">
+                <a href="/" class="logo-link">
+                    <div class="logo-icon">
+                        <img src="https://chatgpt.com/s/m_6a4d246c534c8191afe2457aaf66cab7" alt="Profynex Logo" />
+                    </div>
+                    <div class="logo-text">Profy<span>nex</span></div>
+                </a>
+            </div>
+
+            <!-- Heading -->
+            <div class="mb-5">
+                <h1 class="text-2xl font-black tracking-tight transition-colors duration-300" style="color:var(--text);">Reset Password</h1>
+                <p class="text-sm mt-1 transition-colors duration-300" style="color:var(--text-muted);">Enter your email address and we'll send you a link to reset your password.</p>
+            </div>
+
+            <!-- Reset Form -->
+            <form id="resetForm" novalidate autocomplete="off">
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label class="form-label" for="emailInput">
+                        <i class="fas fa-envelope text-brand-600 mr-1.5"></i> Email Address
+                    </label>
+                    <div class="input-wrap" id="emailWrap">
+                        <span class="input-icon"><i class="fas fa-envelope"></i></span>
+                        <input
+                        type="email"
+                        id="emailInput"
+                        placeholder="Enter your registered email"
+                        autocomplete="email"
+                        />
+                    </div>
+                </div>
+
+                <!-- Submit -->
+                <button type="submit" class="btn-reset" id="resetBtn">
+                    <span class="btn-icon"><i class="fas fa-paper-plane"></i></span>
+                    <span class="btn-text">Send Reset Link</span>
+                    <span class="spinner"></span>
+                </button>
+            </form>
+
+            <!-- Back to Login -->
+            <div class="text-center mt-5">
+                <p class="text-sm transition-colors duration-300" style="color:var(--text-muted);">
+                    <a href="/auth/login/" class="font-semibold text-brand-600 hover:text-brand-700 transition" data-notif="info" data-title="Back to Login" data-msg="Return to the login page to sign in to your account.">
+                        <i class="fas fa-arrow-left mr-1.5"></i> Back to Login
+                    </a>
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- SCRIPTS                                                       -->
+    <!-- ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ============================================================
+            // iOS NOTIFICATION SYSTEM
+            // ============================================================
+            const NotifPopup = {
+                container: document.getElementById('notifPopupContainer'),
+                maxVisible: 4,
+
+                show(options) {
+                    const {
+                        icon = 'fa-solid fa-bell',
+                            iconColor = '',
+                            title = 'Notification',
+                            body = '',
+                            time = 'Just now',
+                            autoDismiss = true,
+                            dismissDelay = 4500,
+                    } = options;
+
+                    const notif = document.createElement('div');
+                    notif.className = 'ios-notification';
+                    notif.style.opacity = '0';
+                    notif.style.transform = 'translateX(40px) scale(0.95)';
+
+                    const iconClass = iconColor ? `notif-icon ${iconColor}` : 'notif-icon';
+                    notif.innerHTML = `
+                                <div class="flex items-start gap-3">
+                                    <div class="${iconClass}"><i class="${icon}"></i></div>
+                                    <div class="notif-content">
+                                        <div class="notif-title">${title}</div>
+                                        <div class="notif-body">${body}</div>
+                                        <div class="flex items-center justify-between mt-1.5">
+                                            <span class="notif-time">${time}</span>
+                                        </div>
+                                    </div>
+                                    <button class="notif-close" aria-label="Dismiss">✕</button>
+                                </div>
+                            `;
+
+                    const closeBtn = notif.querySelector('.notif-close');
+                    closeBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        this.dismiss(notif);
+                    });
+
+                    notif.addEventListener('click', () => {
+                        this.dismiss(notif);
+                    });
+
+                    this.container.appendChild(notif);
+
+                    requestAnimationFrame(() => {
+                        notif.style.opacity = '1';
+                        notif.style.transform = 'translateX(0) scale(1)';
+                    });
+
+                    if (autoDismiss) {
+                        const timer = setTimeout(() => {
+                            this.dismiss(notif);
+                        }, dismissDelay);
+                        notif._dismissTimer = timer;
+                    }
+
+                    this.limitVisible();
+                    return notif;
+                },
+
+                dismiss(notif) {
+                    if (notif._dismissed) return;
+                    notif._dismissed = true;
+                    clearTimeout(notif._dismissTimer);
+
+                    notif.style.animation = 'notifSlideOut 0.4s ease forwards';
+                    setTimeout(() => {
+                        if (notif.parentNode) notif.remove();
+                    }, 450);
+                },
+
+                limitVisible() {
+                    const children = this.container.children;
+                    while (children.length > this.maxVisible) {
+                        const first = children[0];
+                        if (first) this.dismiss(first);
+                    }
+                },
+
+                success(title, body, time) {
+                    return this.show({
+                        icon: 'fa-solid fa-circle-check',
+                        iconColor: 'emerald',
+                        title: title || 'Success',
+                        body: body || 'Operation completed successfully.',
+                        time: time || 'Just now',
+                    });
+                },
+
+                error(title, body, time) {
+                    return this.show({
+                        icon: 'fa-solid fa-circle-xmark',
+                        iconColor: 'rose',
+                        title: title || 'Error',
+                        body: body || 'Something went wrong.',
+                        time: time || 'Just now',
+                    });
+                },
+
+                info(title, body, time) {
+                    return this.show({
+                        icon: 'fa-solid fa-bell',
+                        iconColor: 'slate',
+                        title: title || 'Info',
+                        body: body || 'New update available.',
+                        time: time || 'Just now',
+                    });
+                },
+
+                warning(title, body, time) {
+                    return this.show({
+                        icon: 'fa-solid fa-triangle-exclamation',
+                        iconColor: 'amber',
+                        title: title || 'Warning',
+                        body: body || 'Please check your input.',
+                        time: time || 'Just now',
+                    });
+                }
+            };
+
+            // Attach to elements with data-notif
+            document.querySelectorAll('[data-notif]').forEach(function(el) {
+                el.addEventListener('click', function(e) {
+                    const type = this.dataset.notif || 'info';
+                    const title = this.dataset.title || 'Notification';
+                    const msg = this.dataset.msg || '';
+                    NotifPopup[type] ? NotifPopup[type](title, msg, 'Just now') : NotifPopup.info(title, msg,
+                        'Just now');
+                });
+            });
+
+            // ============================================================
+            // THEME TOGGLE
+            // ============================================================
+            const Theme = {
+                toggle: document.getElementById('themeToggle'),
+                icon: document.getElementById('themeIcon'),
+                current: 'light',
+
+                init() {
+                    const saved = localStorage.getItem('profynex_theme');
+                    if (saved) {
+                        this.current = saved;
+                    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                        this.current = 'dark';
+                    }
+                    this.apply(this.current);
+
+                    this.toggle.addEventListener('click', () => {
+                        const next = this.current === 'light' ? 'dark' : 'light';
+                        this.apply(next);
+                    });
+                },
+
+                apply(theme) {
+                    this.current = theme;
+                    document.documentElement.setAttribute('data-theme', theme);
+                    localStorage.setItem('profynex_theme', theme);
+
+                    if (theme === 'dark') {
+                        this.icon.className = 'fas fa-sun';
+                    } else {
+                        this.icon.className = 'fas fa-moon';
+                    }
+                }
+            };
+
+            // ============================================================
+            // IMAGE PANEL SLIDE-IN
+            // ============================================================
+            const imagePanel = document.getElementById('imagePanel');
+
+            function openPanel() {
+                if (window.innerWidth > 768 && imagePanel) {
+                    setTimeout(function() {
+                        imagePanel.classList.add('open');
+                    }, 400);
+                }
+            }
+
+            window.addEventListener('load', openPanel);
+
+            let resizeTimer;
+            window.addEventListener('resize', function() {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(function() {
+                    if (window.innerWidth > 768 && imagePanel && !imagePanel.classList.contains('open')) {
+                        imagePanel.classList.add('open');
+                    }
+                }, 300);
+            });
+
+            // ============================================================
+            // SHAKE & VALIDATION
+            // ============================================================
+            const emailInput = document.getElementById('emailInput');
+            const emailWrap = document.getElementById('emailWrap');
+            const resetBtn = document.getElementById('resetBtn');
+            const resetForm = document.getElementById('resetForm');
+
+            function shakeElement(wrap) {
+                wrap.classList.remove('shake');
+                void wrap.offsetWidth;
+                wrap.classList.add('shake');
+                setTimeout(function() {
+                    wrap.classList.remove('shake');
+                }, 600);
+            }
+
+            function setError(wrap, isError) {
+                if (isError) {
+                    wrap.classList.add('error');
+                } else {
+                    wrap.classList.remove('error');
+                }
+            }
+
+            emailInput.addEventListener('focus', function() { setError(emailWrap, false); });
+
+            // ============================================================
+            // FORM SUBMISSION
+            // ============================================================
+            resetForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const email = emailInput.value.trim();
+
+                let hasError = false;
+
+                if (email === '' || !email.includes('@') || !email.includes('.')) {
+                    setError(emailWrap, true);
+                    shakeElement(emailWrap);
+                    hasError = true;
+                } else {
+                    setError(emailWrap, false);
+                }
+
+                if (hasError) {
+                    NotifPopup.error('Invalid Email', 'Please enter a valid email address.');
+                    return;
+                }
+
+                resetBtn.classList.add('loading');
+                resetBtn.disabled = true;
+
+                // Simulate sending reset link
+                setTimeout(function() {
+                    resetBtn.classList.remove('loading');
+                    resetBtn.disabled = false;
+
+                    NotifPopup.success('Reset Link Sent! 📧',
+                        'A password reset link has been sent to your email address.');
+
+                    emailInput.value = '';
+                    setError(emailWrap, false);
+
+                    setTimeout(function() {
+                        window.location.href = '/auth/new-password';
+                    }, 2000);
+
+                }, 1600);
+            });
+
+            // ============================================================
+            // KEYBOARD SHORTCUT: Enter to submit
+            // ============================================================
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    const active = document.activeElement;
+                    if (active && active.id === 'emailInput') {
+                        resetForm.dispatchEvent(new Event('submit'));
+                    }
+                }
+            });
+
+            // ============================================================
+            // REMOVE ERROR STATE ON TYPE
+            // ============================================================
+            emailInput.addEventListener('input', function() {
+                if (this.value.trim() !== '') setError(emailWrap, false);
+            });
+
+            // ============================================================
+            // INIT
+            // ============================================================
+            Theme.init();
+
+            console.log('✅ Profynex Reset Password Page — Clean dual-panel design with theme toggle.');
+            console.log('🎨 Theme toggle: Active with proper dark/light styling');
+            console.log('📱 Responsive: Adapts to all screen sizes');
+
+        })();
+    </script>
+
+</body>
+</html>
